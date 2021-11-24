@@ -1,0 +1,122 @@
+<script>
+    //juego de batalla naval
+    var naval = principal();
+    console.log(naval);
+    
+    function principal () {
+        alert("Bienvenido a el juego de batalla naval!")
+        var jugador1 = prompt("Ingresa el nombre del primer jugador");
+        var jugador2 = prompt("Ingresa el nombre del segundo jugador");
+        alert("Bienvenido a la batalla naval, " + jugador1 + " y " + jugador2 + "!");
+        var player1 = tablero1(jugador1);
+        var player2 = tablero2(jugador2);
+        juego(jugador1, jugador2, player1, player2);
+        return "Creado por: Eder Joel Calzada Espinosa."
+    }
+    
+    function tablero1 (jugador1){
+        let tablero_jugador1 = ["|", "|", "|", "|", "|", "|", "|"];
+        let i = 0;
+        while(i == 0 || i == 1 || i == 2){
+            barco = parseInt(prompt(`Turno de: ${jugador1}, ¿En que lugar te gustaria poner un barco? (Escoge del 0 al 6)`))
+            if (barco == 0 || barco == 1 || barco == 2 || barco == 3 || barco == 4 || barco == 5 || barco == 6){
+                tablero_jugador1[barco] = "X";
+                i++;
+            }
+            else{
+                alert("Ingresa un numero del 0 al 6");
+            }
+        }
+    
+        console.log("Este es el tablero de: " + jugador1)
+        console.log(tablero_jugador1);
+        return tablero_jugador1
+    }
+    
+    function tablero2 (jugador2){
+        let tablero_jugador2 = ["|", "|", "|", "|", "|", "|", "|"];
+        let i = 0;
+        while (i == 0 || i == 1 || i == 2){
+            barco = parseInt(prompt(`Turno de: ${jugador2}, ¿En que lugar te gustaria poner un barco? (Escoge del 0 al 6)`));
+            if (barco == 0 || barco == 1 || barco == 2 || barco == 3 || barco == 4 || barco == 5 || barco == 6){
+                tablero_jugador2[barco] = "X";
+                i++;
+            }
+            else{
+                alert("Ingresa un numero del 0 al 6");
+            }
+        }
+        console.log("Este es el tablero de: " + jugador2)
+        console.log(tablero_jugador2);
+        return tablero_jugador2
+    }
+    
+    function juego(jugador1, jugador2,player1,player2){
+        var ganador_final = 0;
+        var turno = 0;
+        var ganador1 = 0;
+        var ganador2 = 0;
+        while (turno < 10 && ganador_final == 0){
+            if (turno % 2 == 0){
+                console.log("Turno de: " + jugador1);
+                var disparo = parseInt(prompt("¿En que lugar te gustaria disparar? (Escoge del 0 al 6)"));
+                if (player2[disparo] == "X"){
+                    console.log("Hundiste un barco");
+                    player2[disparo] = "H";
+                    console.log(player2);
+                    ganador1++
+                }
+                else if (player2[disparo] == "|"){
+                    console.log("Agua");
+                    player2[disparo] = "A";
+                    console.log("SPLASHHHHH!, no se identifico el objetivo")
+                }
+                else if (player2[disparo] == "H"){
+                    console.log("Ya habias disparado en ese lugar");
+                }
+                else if (player2[disparo] == "A"){
+                    console.log("Ya habias disparado en ese lugar");
+                }
+            if (ganador1 == 3){
+                alert(`Ganador: ${jugador1} \n Perdedor: ${jugador2} \n Gracias por jugar batalla naval!.`);
+                console.log(`Este es el tablero de: ${jugador1}`)
+                console.log(player1)
+                console.log(`Este es el tablero de: ${jugador2}`);
+                console.log(player2)
+                ganador_final = 1;
+            }
+            }
+            else{    
+                console.log("Turno de: " + jugador2);
+                var disparo = parseInt(prompt("¿En que lugar te gustaria disparar? (Escoge del 0 al 6)"));
+                if (player1[disparo] == "X"){
+                    console.log("Hundiste un barco");
+                    player1[disparo] = "H";
+                    console.log(player1);
+                    ganador2++
+                }
+                else if (player1[disparo] == "|"){
+                    console.log("Agua");
+                    player1[disparo] = "A";
+                    console.log("SPLASHHHHH!, no se identifico el objetivo")
+                }
+                else if (player1[disparo] == "H"){
+                    console.log("Ya habias disparado en ese lugar");
+                }
+                else if (player1[disparo] == "A"){
+                    console.log("Ya habias disparado en ese lugar");
+                }
+            }
+            turno++;
+            if (ganador2 == 3){
+                alert(`Ganador: ${jugador2} \n Perdedor: ${jugador1} \n Gracias por jugar batalla naval!.`);
+                console.log(`Este es el tablero de: ${jugador1}`)
+                console.log(player1)
+                console.log(`Este es el tablero de: ${jugador2}`);
+                console.log(player2)
+                ganador_final = 1;
+            }
+        }
+    }
+    
+    </script>
